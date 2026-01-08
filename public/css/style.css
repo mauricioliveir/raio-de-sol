@@ -1,0 +1,158 @@
+:root {
+  --purple: #7c3aed;
+  --purple-dark: #120018;
+  --soft: #f4eaff;
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* FUNDO */
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #2a0040, #0c0014);
+  font-family: 'Poppins', sans-serif;
+  color: var(--soft);
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+/* ☀️ RAIOS DE SOL */
+.sun-rays {
+  position: fixed;
+  inset: -50%;
+  background:
+    conic-gradient(
+      from 0deg,
+      rgba(255,255,255,0.04),
+      rgba(255,255,255,0.0),
+      rgba(255,255,255,0.06),
+      rgba(255,255,255,0.0)
+    );
+  animation: rotateRays 80s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sun-glow {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at top,
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.02),
+    transparent 60%
+  );
+  animation: glowPulse 12s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* CONTAINER */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 420px;
+  width: 100%;
+  padding: 24px;
+  text-align: center;
+}
+
+/* HEADER */
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+}
+
+header h1 span {
+  color: var(--purple);
+}
+
+header p {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+/* CARROSSEL */
+.carousel {
+  margin-top: 22px;
+  overflow: hidden;
+  border-radius: 22px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.6s ease;
+}
+
+.carousel img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* DOTS */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 12px 0;
+}
+
+.dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+}
+
+.dots .active {
+  background: var(--purple);
+  transform: scale(1.2);
+}
+
+/* FRASE */
+.quote {
+  margin-top: 16px;
+  padding: 18px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 16px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  animation: fade 1s ease;
+}
+
+.quote strong {
+  color: #d8b4fe;
+}
+
+/* FOOTER */
+footer {
+  margin-top: 26px;
+  font-size: 0.7rem;
+  opacity: 0.6;
+}
+
+/* ANIMAÇÕES */
+@keyframes rotateRays {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
