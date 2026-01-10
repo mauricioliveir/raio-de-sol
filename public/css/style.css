@@ -1,6 +1,7 @@
 :root {
   --purple: #7c3aed;
   --purple-dark: #120018;
+  --purple-light: #a78bfa;
   --soft: #f4eaff;
 }
 
@@ -134,6 +135,159 @@ header p {
   color: #d8b4fe;
 }
 
+/* BOTÃO DO CONTO */
+.story-btn-container {
+  margin: 20px 0;
+}
+
+.story-btn {
+  background: linear-gradient(135deg, var(--purple), #5b21b6);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.story-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+}
+
+.story-btn:active {
+  transform: translateY(0);
+}
+
+.story-btn span {
+  font-size: 1.2rem;
+}
+
+/* OVERLAY DO CONTO */
+.story-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(12, 0, 20, 0.95);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.story-overlay.active {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+.story-modal {
+  background: linear-gradient(145deg, rgba(42, 0, 64, 0.9), rgba(18, 0, 24, 0.95));
+  border-radius: 24px;
+  padding: 30px;
+  max-width: 700px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.story-modal h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  text-align: center;
+  color: var(--soft);
+}
+
+.story-modal h2 span {
+  color: var(--purple-light);
+}
+
+.story-content {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(244, 234, 255, 0.9);
+  text-align: justify;
+}
+
+.story-content p {
+  margin-bottom: 20px;
+}
+
+.story-content em {
+  color: var(--purple-light);
+  font-style: italic;
+}
+
+.quote-highlight {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--purple-light);
+  font-style: italic;
+  margin: 25px 0;
+  padding: 15px;
+  background: rgba(124, 58, 237, 0.1);
+  border-radius: 12px;
+  border-left: 3px solid var(--purple);
+}
+
+/* BOTÃO FECHAR */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--purple-light);
+  font-size: 2.5rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+  z-index: 1001;
+}
+
+.close-btn:hover {
+  color: white;
+}
+
+/* SCROLLBAR PERSONALIZADA */
+.story-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.story-modal::-webkit-scrollbar-track {
+  background: rgba(18, 0, 24, 0.5);
+  border-radius: 10px;
+}
+
+.story-modal::-webkit-scrollbar-thumb {
+  background: var(--purple);
+  border-radius: 10px;
+}
+
+.story-modal::-webkit-scrollbar-thumb:hover {
+  background: var(--purple-light);
+}
+
 /* FOOTER */
 footer {
   margin-top: 26px;
@@ -155,4 +309,32 @@ footer {
 @keyframes fade {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  .story-modal {
+    padding: 20px;
+    margin: 10px;
+    max-height: 90vh;
+  }
+  
+  .story-modal h2 {
+    font-size: 1.8rem;
+  }
+  
+  .story-content {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  
+  .story-btn {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+  }
 }

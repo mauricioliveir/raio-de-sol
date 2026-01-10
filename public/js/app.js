@@ -11,6 +11,9 @@ const track = document.getElementById("track");
 const quoteEl = document.getElementById("quote");
 const dotsEl = document.getElementById("dots");
 const audio = document.getElementById("bgMusic");
+const storyBtn = document.getElementById("storyBtn");
+const storyOverlay = document.getElementById("storyOverlay");
+const closeBtn = document.getElementById("closeBtn");
 
 let index = 0;
 let startX = 0;
@@ -65,7 +68,34 @@ function startAudioOnce() {
   }).catch(() => {});
 }
 
-// Fallback para qualquer toque
+// 📖 Controle do conto
+storyBtn.addEventListener("click", () => {
+  storyOverlay.classList.add("active");
+  document.body.style.overflow = "hidden";
+});
+
+closeBtn.addEventListener("click", () => {
+  storyOverlay.classList.remove("active");
+  document.body.style.overflow = "auto";
+});
+
+// Fechar ao clicar fora do modal
+storyOverlay.addEventListener("click", (e) => {
+  if (e.target === storyOverlay) {
+    storyOverlay.classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+});
+
+// Fechar com ESC
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && storyOverlay.classList.contains("active")) {
+    storyOverlay.classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+});
+
+// Fallback para qualquer toque (iniciar música)
 document.addEventListener("touchstart", startAudioOnce, { once: true });
 document.addEventListener("click", startAudioOnce, { once: true });
 
