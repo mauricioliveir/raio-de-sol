@@ -11,9 +11,15 @@ const track = document.getElementById("track");
 const quoteEl = document.getElementById("quote");
 const dotsEl = document.getElementById("dots");
 const audio = document.getElementById("bgMusic");
-const storyBtn = document.getElementById("storyBtn");
-const storyOverlay = document.getElementById("storyOverlay");
-const closeBtn = document.getElementById("closeBtn");
+
+// Elementos da página principal
+const dreamsBtn = document.getElementById("dreamsBtn");
+
+// Overlays dos contos (na página principal)
+const storyOverlay1 = document.getElementById("storyOverlay1");
+const storyOverlay2 = document.getElementById("storyOverlay2");
+const closeBtn1 = document.getElementById("closeBtn1");
+const closeBtn2 = document.getElementById("closeBtn2");
 
 let index = 0;
 let startX = 0;
@@ -68,30 +74,58 @@ function startAudioOnce() {
   }).catch(() => {});
 }
 
-// 📖 Controle do conto
-storyBtn.addEventListener("click", () => {
-  storyOverlay.classList.add("active");
-  document.body.style.overflow = "hidden";
-});
-
-closeBtn.addEventListener("click", () => {
-  storyOverlay.classList.remove("active");
-  document.body.style.overflow = "auto";
-});
-
-// Fechar ao clicar fora do modal
-storyOverlay.addEventListener("click", (e) => {
-  if (e.target === storyOverlay) {
-    storyOverlay.classList.remove("active");
+// ❌ Fechar overlays
+if (closeBtn1) {
+  closeBtn1.addEventListener("click", () => {
+    storyOverlay1.classList.remove("active");
     document.body.style.overflow = "auto";
-  }
-});
+  });
+}
 
-// Fechar com ESC
+if (closeBtn2) {
+  closeBtn2.addEventListener("click", () => {
+    storyOverlay2.classList.remove("active");
+    document.body.style.overflow = "auto";
+  });
+}
+
+// 🚀 Navegação para página de Sonhos
+if (dreamsBtn) {
+  dreamsBtn.addEventListener("click", () => {
+    window.location.href = "sonhos.html";
+  });
+}
+
+// Fechar overlays ao clicar fora
+if (storyOverlay1) {
+  storyOverlay1.addEventListener("click", (e) => {
+    if (e.target === storyOverlay1) {
+      storyOverlay1.classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
+  });
+}
+
+if (storyOverlay2) {
+  storyOverlay2.addEventListener("click", (e) => {
+    if (e.target === storyOverlay2) {
+      storyOverlay2.classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
+  });
+}
+
+// Fechar overlays com ESC
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && storyOverlay.classList.contains("active")) {
-    storyOverlay.classList.remove("active");
-    document.body.style.overflow = "auto";
+  if (e.key === "Escape") {
+    if (storyOverlay1 && storyOverlay1.classList.contains("active")) {
+      storyOverlay1.classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
+    if (storyOverlay2 && storyOverlay2.classList.contains("active")) {
+      storyOverlay2.classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
   }
 });
 
@@ -105,4 +139,5 @@ setInterval(() => {
   update();
 }, 6500);
 
+// Inicializar
 update();

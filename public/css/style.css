@@ -3,6 +3,8 @@
   --purple-dark: #120018;
   --purple-light: #a78bfa;
   --soft: #f4eaff;
+  --white: #ffffff;
+  --gold: #ffd700;
 }
 
 /* RESET */
@@ -35,6 +37,7 @@ body {
       rgba(255,255,255,0.06),
       rgba(255,255,255,0.0)
     );
+  -webkit-animation: rotateRays 80s linear infinite;
   animation: rotateRays 80s linear infinite;
   pointer-events: none;
   z-index: 0;
@@ -49,12 +52,13 @@ body {
     rgba(255,255,255,0.02),
     transparent 60%
   );
+  -webkit-animation: glowPulse 12s ease-in-out infinite;
   animation: glowPulse 12s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
 }
 
-/* CONTAINER */
+/* CONTAINER PRINCIPAL */
 .container {
   position: relative;
   z-index: 1;
@@ -90,6 +94,7 @@ header p {
 
 .carousel-track {
   display: flex;
+  -webkit-transition: -webkit-transform 0.6s ease;
   transition: transform 0.6s ease;
 }
 
@@ -117,6 +122,7 @@ header p {
 
 .dots .active {
   background: var(--purple);
+  -webkit-transform: scale(1.2);
   transform: scale(1.2);
 }
 
@@ -128,6 +134,7 @@ header p {
   border-radius: 16px;
   font-size: 1.05rem;
   line-height: 1.6;
+  -webkit-animation: fade 1s ease;
   animation: fade 1s ease;
 }
 
@@ -135,50 +142,66 @@ header p {
   color: #d8b4fe;
 }
 
-/* BOTÃO DO CONTO */
-.story-btn-container {
-  margin: 20px 0;
+/* BOTÃO PRINCIPAL */
+.main-buttons-container {
+  margin: 25px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.story-btn {
+.main-btn {
   background: linear-gradient(135deg, var(--purple), #5b21b6);
   color: white;
   border: none;
-  padding: 14px 28px;
+  padding: 16px 32px;
   border-radius: 50px;
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 1.1rem;
   cursor: pointer;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
 }
 
-.story-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
-  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+.main-btn:hover {
+  -webkit-transform: translateY(-3px);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(124, 58, 237, 0.6);
 }
 
-.story-btn:active {
+.main-btn:active {
+  -webkit-transform: translateY(0);
   transform: translateY(0);
 }
 
-.story-btn span {
-  font-size: 1.2rem;
+.main-btn span {
+  font-size: 1.3rem;
 }
 
-/* OVERLAY DO CONTO */
+/* FOOTER */
+footer {
+  margin-top: 26px;
+  font-size: 0.7rem;
+  opacity: 0.6;
+}
+
+/* ==============================
+   OVERLAY DOS CONTOS
+   ============================== */
 .story-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(12, 0, 20, 0.95);
+  background: rgba(12, 0, 20, 0.98);
   display: none;
   justify-content: center;
   align-items: center;
@@ -189,11 +212,12 @@ header p {
 
 .story-overlay.active {
   display: flex;
+  -webkit-animation: fadeIn 0.3s ease;
   animation: fadeIn 0.3s ease;
 }
 
 .story-modal {
-  background: linear-gradient(145deg, rgba(42, 0, 64, 0.9), rgba(18, 0, 24, 0.95));
+  background: linear-gradient(145deg, rgba(42, 0, 64, 0.95), rgba(18, 0, 24, 0.98));
   border-radius: 24px;
   padding: 30px;
   max-width: 700px;
@@ -201,8 +225,10 @@ header p {
   max-height: 85vh;
   overflow-y: auto;
   position: relative;
-  border: 1px solid rgba(124, 58, 237, 0.2);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .story-modal h2 {
@@ -215,6 +241,13 @@ header p {
 
 .story-modal h2 span {
   color: var(--purple-light);
+}
+
+.story-modal h2 small {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  margin-top: 5px;
+  display: block;
 }
 
 .story-content {
@@ -261,6 +294,7 @@ header p {
   display: flex;
   align-items: center;
   justify-content: center;
+  -webkit-transition: color 0.3s ease;
   transition: color 0.3s ease;
   z-index: 1001;
 }
@@ -288,17 +322,254 @@ header p {
   background: var(--purple-light);
 }
 
-/* FOOTER */
-footer {
-  margin-top: 26px;
-  font-size: 0.7rem;
-  opacity: 0.6;
+/* ==============================
+   PÁGINA DE SONHOS
+   ============================== */
+.dreams-page {
+  background: radial-gradient(circle at center, #1a0030, #0a0015);
+  min-height: 100vh;
 }
 
-/* ANIMAÇÕES */
+.dreams-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  width: 100%;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.dreams-header {
+  margin-bottom: 50px;
+}
+
+.dreams-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2rem;
+  margin-bottom: 15px;
+  color: var(--soft);
+}
+
+.dreams-header h1 span {
+  color: var(--purple);
+  text-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+}
+
+.dreams-subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  line-height: 1.8;
+}
+
+.dreams-subtitle strong {
+  color: var(--purple-light);
+}
+
+/* Grid de Cards */
+.dreams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin: 40px 0;
+}
+
+/* Cards dos Sonhos */
+.dream-card {
+  position: relative;
+  border-radius: 25px;
+  overflow: hidden;
+  min-height: 450px;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.dream-card:hover {
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+}
+
+.dream-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(0,0,0,0.7) 0%,
+    rgba(0,0,0,0.4) 50%,
+    rgba(0,0,0,0.7) 100%);
+  z-index: 1;
+}
+
+.dream-card-purple {
+  background: linear-gradient(135deg, 
+    #2a0040 0%, 
+    #4c1d95 50%, 
+    #1e0030 100%);
+  border: 2px solid rgba(124, 58, 237, 0.3);
+}
+
+.dream-card-white {
+  background: linear-gradient(135deg, 
+    #1a1a2e 0%, 
+    #2d2d4d 50%, 
+    #0f0f1a 100%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.dream-card-content {
+  position: relative;
+  z-index: 2;
+  padding: 40px 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.dream-card-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.dream-time {
+  font-size: 2rem;
+  -webkit-animation: float 3s ease-in-out infinite;
+  animation: float 3s ease-in-out infinite;
+}
+
+.dream-card-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: white;
+  margin: 0;
+}
+
+.dream-card h3 {
+  font-size: 1.5rem;
+  color: var(--purple-light);
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+.dream-card-white h3 {
+  color: #e0e0ff;
+}
+
+.dream-excerpt {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 40px;
+  max-width: 90%;
+  min-height: 80px;
+}
+
+/* Remover as tags (mantendo apenas a estrutura caso queira reutilizar) */
+.dream-tags {
+  display: none; /* Esconder as tags */
+}
+
+/* Botões dos Cards */
+.dream-read-btn {
+  background: linear-gradient(135deg, var(--purple), #5b21b6);
+  color: white;
+  border: none;
+  padding: 15px 35px;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+}
+
+.dream-card-white .dream-read-btn {
+  background: linear-gradient(135deg, 
+    rgba(255,255,255,0.9), 
+    rgba(255,255,255,0.7));
+  color: #5b21b6;
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+}
+
+.dream-read-btn:hover {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  box-shadow: 0 12px 35px rgba(124, 58, 237, 0.6);
+}
+
+.dream-card-white .dream-read-btn:hover {
+  box-shadow: 0 12px 35px rgba(255, 255, 255, 0.4);
+}
+
+.dream-read-btn span {
+  font-size: 1.3rem;
+}
+
+/* Botão Voltar */
+.dreams-back-container {
+  margin: 50px 0 30px;
+}
+
+.back-to-main-btn {
+  background: transparent;
+  color: var(--purple-light);
+  border: 2px solid var(--purple);
+  padding: 14px 30px;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.back-to-main-btn:hover {
+  background: rgba(124, 58, 237, 0.1);
+  -webkit-transform: translateY(-3px);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+}
+
+/* Rodapé da página de sonhos */
+.dreams-footer {
+  margin-top: 40px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==============================
+   ANIMAÇÕES
+   ============================== */
+
+@-webkit-keyframes rotateRays {
+  from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
 @keyframes rotateRays {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-webkit-keyframes glowPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
 @keyframes glowPulse {
@@ -306,9 +577,19 @@ footer {
   50% { opacity: 1; }
 }
 
+@-webkit-keyframes fade {
+  from { opacity: 0; -webkit-transform: translateY(10px); transform: translateY(10px); }
+  to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+}
+
 @keyframes fade {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; -webkit-transform: translateY(10px); transform: translateY(10px); }
+  to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+}
+
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes fadeIn {
@@ -316,8 +597,65 @@ footer {
   to { opacity: 1; }
 }
 
-/* RESPONSIVIDADE */
+@-webkit-keyframes float {
+  0%, 100% { -webkit-transform: translateY(0); transform: translateY(0); }
+  50% { -webkit-transform: translateY(-10px); transform: translateY(-10px); }
+}
+
+@keyframes float {
+  0%, 100% { -webkit-transform: translateY(0); transform: translateY(0); }
+  50% { -webkit-transform: translateY(-10px); transform: translateY(-10px); }
+}
+
+/* ==============================
+   RESPONSIVIDADE
+   ============================== */
+
 @media (max-width: 768px) {
+  .dreams-container {
+    padding: 20px 15px;
+  }
+  
+  .dreams-header h1 {
+    font-size: 2.5rem;
+  }
+  
+  .dreams-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .dream-card {
+    min-height: 400px;
+  }
+  
+  .dream-card:hover {
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
+  
+  .dream-card-content {
+    padding: 30px 20px;
+  }
+  
+  .dream-card-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .dream-card h3 {
+    font-size: 1.3rem;
+  }
+  
+  .dream-excerpt {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+  
+  .main-btn {
+    padding: 14px 25px;
+    font-size: 1rem;
+  }
+  
   .story-modal {
     padding: 20px;
     margin: 10px;
@@ -332,9 +670,85 @@ footer {
     font-size: 1rem;
     line-height: 1.7;
   }
+}
+
+@media (max-width: 480px) {
+  .dreams-header h1 {
+    font-size: 2rem;
+  }
   
-  .story-btn {
-    padding: 12px 24px;
+  .dreams-subtitle {
     font-size: 0.95rem;
   }
+  
+  .dream-card-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .dream-read-btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+  
+  .container {
+    padding: 20px 15px;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  .carousel img {
+    height: 350px;
+  }
+}
+
+/* ==============================
+   CORREÇÕES ESPECÍFICAS PARA SAFARI
+   ============================== */
+.safari-browser .story-modal {
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+
+/* Garantir que transform sempre venha depois de -webkit-transform */
+.carousel-track {
+  -webkit-transition: -webkit-transform 0.6s ease;
+  transition: transform 0.6s ease;
+}
+
+.dots .active {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.dream-card {
+  -webkit-transition: -webkit-transform 0.4s ease, box-shadow 0.4s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.dream-card:hover {
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+}
+
+.main-btn {
+  -webkit-transition: -webkit-transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-btn:hover {
+  -webkit-transform: translateY(-3px);
+  transform: translateY(-3px);
+}
+
+.back-to-main-btn {
+  -webkit-transition: -webkit-transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.back-to-main-btn:hover {
+  -webkit-transform: translateY(-3px);
+  transform: translateY(-3px);
 }
